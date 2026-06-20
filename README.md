@@ -50,6 +50,10 @@ llama_from_scratch/
 │   ├── sanity_check.py        # 架构行为校验
 │   ├── verify_kv_cache.py     # KV Cache 等价性验证
 │   └── test_*.py              # 各模块测试
+├── reports/
+│   ├── experiment_report.md   # 最新实验报告
+│   ├── loss_curve.svg         # 最新损失曲线
+│   └── train_metrics.csv      # 最新训练日志
 ├── generate.py                # 自回归文本生成入口
 └── train.py                   # 数据管道与训练实验入口
 ```
@@ -127,6 +131,49 @@ python -X utf8 generate.py --checkpoint checkpoint.pt --prompt "Far over" --max-
 
 注：如果不传入`--checkpoint`，脚本会使用随机初始化权重。此时输出只能用于验证推理链路是否跑通，不代表模型具备真实语言能力。
 
+## 训练日志与损失曲线
+
+运行一次 GPU 训练实验：
+
+```bash
+python -X utf8 train.py \
+  --device cuda \
+  --max-steps 1000 \
+  --eval-interval 50 \
+  --eval-iters 20 \
+  --smooth-window 5 \
+  --batch-size 8 \
+  --block-size 128 \
+  --dim 128 \
+  --n-layers 2 \
+  --n-heads 4 \
+  --learning-rate 0.0005 \
+  --weight-decay 0.01
+```
+
+训练脚本会自动生成：
+
+- `runs/<timestamp>/metrics.csv`
+- `runs/<timestamp>/loss_curve.svg`
+- `runs/<timestamp>/report.md`
+- `reports/train_metrics.csv`
+- `reports/loss_curve.svg`
+- `reports/experiment_report.md`
+
+其中 `loss_curve.svg` 只绘制平滑后的 loss 曲线，当前平滑窗口为 5 个评估点。
+
+本项目当前保留了一次 1000 step GPU 训练实验的结果：
+
+| step | train loss | val loss | train ppl | val ppl |
+|---:|---:|---:|---:|---:|
+| 0 | 11.0184 | 11.0175 | 60983.71 | 60934.17 |
+| 250 | 5.2802 | 5.5880 | 196.41 | 267.19 |
+| 500 | 4.5535 | 5.0922 | 94.97 | 162.74 |
+| 750 | 4.3658 | 4.8548 | 78.71 | 128.36 |
+| 1000 | 4.0807 | 4.7568 | 59.19 | 116.37 |
+
+报告见 [`reports/experiment_report.md`](reports/experiment_report.md)，损失曲线见 [`reports/loss_curve.svg`](reports/loss_curve.svg)。
+
 ## KV Cache Benchmark
 
 运行基准测试：
@@ -192,7 +239,7 @@ python -X utf8 tests/test_pipeline.py
 ## 环境依赖
 
 ```bash
-pip install torch tiktoken
+pip install -r requirements.txt
 ```
 
 推荐环境：
@@ -211,6 +258,8 @@ pip install torch tiktoken
 - 静态 KV Cache
 - 文本生成入口
 - KV Cache benchmark
+- 训练日志与 loss 曲线
+- 实验报告
 - 基础测试矩阵
 
 后续有计划的扩展：
@@ -218,9 +267,8 @@ pip install torch tiktoken
 - GQA / MQA
 - 更完整的 tokenizer
 - 训练 checkpoint 保存与加载
-- 训练日志与 loss 曲线
 - 更系统的推理速度benchmark
-- 实验总结
+- 更系统的实验总结
 
 ## 项目定位
 

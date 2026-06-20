@@ -13,6 +13,7 @@ def test_swiglu_pipeline():
     x = torch.randn(B, S, D)
 
     ffn = FeedForward(dim=D, hidden_dim=hidden_dim)
+    assert isinstance(ffn.silu, torch.nn.SiLU), "[失败] SwiGLU 必须使用 SiLU/Swish 激活"
     out = ffn(x)
     
     #检测维度

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  <text x="450.0" y="24" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700">Smoothed Training and Validation Loss</text>
+  <line x1="72" y1="36" x2="72" y2="450" stroke="#222" stroke-width="1.5"/>
+  <line x1="72" y1="450" x2="872" y2="450" stroke="#222" stroke-width="1.5"/>
+  <text x="472.0" y="498" text-anchor="middle" font-family="Arial" font-size="13">step</text>
+  <text x="20" y="243.0" text-anchor="middle" font-family="Arial" font-size="13" transform="rotate(-90 20 243.0)">loss</text>
+  <text x="64" y="40" text-anchor="end" font-family="Arial" font-size="12">8.101</text>
+  <text x="64" y="454" text-anchor="end" font-family="Arial" font-size="12">4.112</text>
+  <text x="72" y="472" text-anchor="middle" font-family="Arial" font-size="12">0</text>
+  <text x="872" y="472" text-anchor="middle" font-family="Arial" font-size="12">1000</text>
+  <polyline fill="none" stroke="#2563eb" stroke-width="3" points="72.00,39.92 112.00,97.88 152.00,139.59 192.00,258.73 232.00,299.54 272.00,324.99 312.00,345.88 352.00,362.12 392.00,377.21 432.00,385.94 472.00,395.26 512.00,403.83 552.00,412.57 592.00,416.47 632.00,423.43 672.00,427.16 712.00,433.49 752.00,436.43 792.00,442.35 832.00,444.44 872.00,450.00"/>
+  <polyline fill="none" stroke="#dc2626" stroke-width="3" points="72.00,36.00 112.00,90.57 152.00,128.65 192.00,241.38 232.00,275.45 272.00,294.19 312.00,309.69 352.00,322.41 392.00,332.70 432.00,342.42 472.00,349.84 512.00,355.51 552.00,358.73 592.00,363.66 632.00,366.74 672.00,371.47 712.00,376.40 752.00,383.33 792.00,385.36 832.00,386.52 872.00,387.73"/>
+  <rect x="710" y="48" width="145" height="58" fill="#fff" stroke="#ddd"/>
+  <line x1="724" y1="68" x2="762" y2="68" stroke="#2563eb" stroke-width="3"/>
+  <text x="772" y="72" font-family="Arial" font-size="13">smooth train</text>
+  <line x1="724" y1="90" x2="762" y2="90" stroke="#dc2626" stroke-width="3"/>
+  <text x="772" y="94" font-family="Arial" font-size="13">smooth val</text>
+</svg>
